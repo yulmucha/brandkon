@@ -13,8 +13,8 @@ public class BrandService {
         this.brandRepository = brandRepository;
     }
 
-    public List<BrandResponse> findAll() {
-        return brandRepository.findAll()
+    public List<BrandResponse> findAll(Long categoryId) {
+        return brandRepository.findAllByCategoryId(categoryId)
                 .stream()
                 .map(b -> new BrandResponse(
                         b.getId(),

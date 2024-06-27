@@ -1,6 +1,7 @@
 package practice.brandkon.brand;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -14,8 +15,9 @@ public class BrandRestController {
         this.brandService = brandService;
     }
 
+    // GET /brands?categoryId=6
     @GetMapping("/brands")
-    public List<BrandResponse> findAll() {
-        return brandService.findAll();
+    public List<BrandResponse> findAll(@RequestParam Long categoryId) {
+        return brandService.findAll(categoryId);
     }
 }
