@@ -14,21 +14,56 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<ProductResponse> findAll(Long brandId, Long categoryId) {
+    public List<ProductResponse> findAll(Long brandId, Long categoryId, String sort) {
         if (brandId != null) {
-            return productRepository.findAllByBrandId(brandId)
-                    .stream()
-                    .map(p -> new ProductResponse(
-                            p.getId(),
-                            p.getImageUrl(),
-                            p.getPrice(),
-                            p.getName(),
-                            p.getBrand().getName()))
-                    .toList();
+            if (sort.equals("POPULAR")) {
+                return productRepository.findAllByBrandIdOrderBySalesDesc(brandId).stream()
+                        .map(p -> new ProductResponse(
+                                p.getId(),
+                                p.getImageUrl(),
+                                p.getPrice(),
+                                p.getName(),
+                                p.getBrand().getName()))
+                        .toList();
+            } else {
+                return productRepository.findAllByBrandId(brandId)
+                        .stream()
+                        .map(p -> new ProductResponse(
+                                p.getId(),
+                                p.getImageUrl(),
+                                p.getPrice(),
+                                p.getName(),
+                                p.getBrand().getName()))
+                        .toList();
+            }
         }
 
         if (categoryId != null) {
-            return productRepository.findAllByCategoryId(categoryId)
+            if (sort.equals("POPULAR")) {
+                return productRepository.findAllByCategoryIdOrderBySalesDesc(categoryId)
+                        .stream()
+                        .map(p -> new ProductResponse(
+                                p.getId(),
+                                p.getImageUrl(),
+                                p.getPrice(),
+                                p.getName(),
+                                p.getBrand().getName()))
+                        .toList();
+            } else {
+                return productRepository.findAllByCategoryId(categoryId)
+                        .stream()
+                        .map(p -> new ProductResponse(
+                                p.getId(),
+                                p.getImageUrl(),
+                                p.getPrice(),
+                                p.getName(),
+                                p.getBrand().getName()))
+                        .toList();
+            }
+        }
+
+        if (sort.equals("POPULAR")) {
+            return productRepository.findAllByOrderBySalesDesc()
                     .stream()
                     .map(p -> new ProductResponse(
                             p.getId(),

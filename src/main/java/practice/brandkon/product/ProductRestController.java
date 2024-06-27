@@ -17,14 +17,17 @@ public class ProductRestController {
         this.productService = productService;
     }
 
-    // GET /products?brandId=34
-    // GET /products?categoryId=6
+    // GET /products?sort=POPULAR
+    // GET /products?brandId=34&sort=RECENT
+    // GET /products?brandId=34&sort=POPULAR
+    // GET /products?categoryId=6&sort=POPULAR
     @GetMapping("/products")
     public List<ProductResponse> findAll(
             @RequestParam(required = false) Long brandId,
-            @RequestParam(required = false) Long categoryId
+            @RequestParam(required = false) Long categoryId,
+            @RequestParam String sort
     ) {
-        return productService.findAll(brandId, categoryId);
+        return productService.findAll(brandId, categoryId, sort);
     }
 
     @GetMapping("/products/{id}")
