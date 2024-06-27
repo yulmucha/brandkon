@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import practice.brandkon.brand.Brand;
+import practice.brandkon.category.Category;
 
 @Entity
 public class Product {
@@ -25,6 +26,9 @@ public class Product {
     private Integer expiryDays;
 
     private Long sales;
+
+    @ManyToOne
+    private Category category;
 
     @ManyToOne
     private Brand brand;

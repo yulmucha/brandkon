@@ -14,7 +14,31 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<ProductResponse> findAll() {
+    public List<ProductResponse> findAll(Long brandId, Long categoryId) {
+        if (brandId != null) {
+            return productRepository.findAllByBrandId(brandId)
+                    .stream()
+                    .map(p -> new ProductResponse(
+                            p.getId(),
+                            p.getImageUrl(),
+                            p.getPrice(),
+                            p.getName(),
+                            p.getBrand().getName()))
+                    .toList();
+        }
+
+        if (categoryId != null) {
+            return productRepository.findAllByCategoryId(categoryId)
+                    .stream()
+                    .map(p -> new ProductResponse(
+                            p.getId(),
+                            p.getImageUrl(),
+                            p.getPrice(),
+                            p.getName(),
+                            p.getBrand().getName()))
+                    .toList();
+        }
+
         return productRepository.findAll()
                 .stream()
                 .map(p -> new ProductResponse(
