@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 public class ProductRestController {
@@ -30,6 +31,18 @@ public class ProductRestController {
 
     @GetMapping("/products/{id}")
     public ProductDetailResponse findById(@PathVariable Long id) {
-        return null;
+        Product product = productRepository.findById(id).orElse(null);
+
+        if (product == null) {
+            throw new NoSuchElementException("상품을 찾을 수 없습니다 id: " + id);
+        }
+
+        return new ProductDetailResponse(
+                product.getId(),
+                product.getName(),
+                product.getBrand().getId(),
+                product.getBrand().getName(),
+                product.getPrice(),
+                product.getExpiryDays());
     }
 }
