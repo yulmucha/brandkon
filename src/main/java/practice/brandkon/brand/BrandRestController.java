@@ -8,20 +8,14 @@ import java.util.List;
 @RestController
 public class BrandRestController {
 
-    private final BrandRepository brandRepository;
+    private final BrandService brandService;
 
-    public BrandRestController(BrandRepository brandRepository) {
-        this.brandRepository = brandRepository;
+    public BrandRestController(BrandService brandService) {
+        this.brandService = brandService;
     }
 
     @GetMapping("/brands")
     public List<BrandResponse> findAll() {
-        return brandRepository.findAll()
-                .stream()
-                .map(b -> new BrandResponse(
-                        b.getId(),
-                        b.getImageUrl(),
-                        b.getName()))
-                .toList();
+        return brandService.findAll();
     }
 }
