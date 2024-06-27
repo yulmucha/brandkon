@@ -1,4 +1,4 @@
-package practice.brandkon;
+package practice.brandkon.category;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

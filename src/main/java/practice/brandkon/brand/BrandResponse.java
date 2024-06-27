@@ -1,4 +1,4 @@
-package practice.brandkon;
+package practice.brandkon.brand;
 
 public record BrandResponse(
         long brandId,

@@ -1,4 +1,4 @@
-package practice.brandkon;
+package practice.brandkon.brand;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

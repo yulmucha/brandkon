@@ -1,4 +1,4 @@
-package practice.brandkon;
+package practice.brandkon.product;
 
 public record ProductResponse(
         long productId,

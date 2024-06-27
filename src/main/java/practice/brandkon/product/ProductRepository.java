@@ -1,4 +1,4 @@
-package practice.brandkon;
+package practice.brandkon.product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

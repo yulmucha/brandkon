@@ -1,4 +1,4 @@
-package practice.brandkon;
+package practice.brandkon.category;
 
 public record CategoryResponse(
         long categoryId,
