@@ -4,6 +4,7 @@ public record ProductDao(
         Long id,
         String productImageUrl,
         String productName,
-        Long price
+        Long price,
+        String brandName
 ) {
 }

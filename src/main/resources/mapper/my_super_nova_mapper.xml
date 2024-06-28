@@ -7,9 +7,12 @@
         SELECT
           product.id,
           product.image_url,
-          product.name,
-          product.price
+          product.name AS 컬럼별칭,
+          product.price,
+          brand.name
         FROM product
+        JOIN brand
+        ON product.brand_id = brand.id
         <where>
             <if test="brandId != null">
                 and brand_id = #{brandId}
