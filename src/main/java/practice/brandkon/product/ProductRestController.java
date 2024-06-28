@@ -11,20 +11,9 @@ import java.util.List;
 public class ProductRestController {
 
     private final ProductService productService;
-    private final ProductMapper productMapper;
 
-    public ProductRestController(ProductService productService, ProductMapper productMapper) {
+    public ProductRestController(ProductService productService) {
         this.productService = productService;
-        this.productMapper = productMapper;
-    }
-
-    @GetMapping("/products/mybatis")
-    public List<ProductDao> findAllMybatis(
-            @RequestParam(required = false) Long brandId,
-            @RequestParam(required = false) Long categoryId,
-            @RequestParam(required = false) String sort
-    ) {
-        return productMapper.findAll(brandId, categoryId, sort);
     }
 
     // GET /products?sort=POPULAR
@@ -35,7 +24,7 @@ public class ProductRestController {
     public List<ProductResponse> findAll(
             @RequestParam(required = false) Long brandId,
             @RequestParam(required = false) Long categoryId,
-            @RequestParam String sort
+            @RequestParam(required = false) String sort
     ) {
         return productService.findAll(brandId, categoryId, sort);
     }
