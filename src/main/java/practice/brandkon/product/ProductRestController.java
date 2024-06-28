@@ -6,15 +6,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RestController
 public class ProductRestController {
 
     private final ProductService productService;
+    private final ProductMapper productMapper;
 
-    public ProductRestController(ProductService productService) {
+    public ProductRestController(ProductService productService, ProductMapper productMapper) {
         this.productService = productService;
+        this.productMapper = productMapper;
+    }
+
+    @GetMapping("/products/mybatis")
+    public List<ProductDao> findAllMybatis(
+            @RequestParam(required = false) Long brandId,
+            @RequestParam(required = false) Long categoryId,
+            @RequestParam(required = false) String sort
+    ) {
+        return productMapper.findAll(brandId, categoryId, sort);
     }
 
     // GET /products?sort=POPULAR
