@@ -28,9 +28,6 @@ public class Product {
     private Long sales;
 
     @ManyToOne
-    private Category category;
-
-    @ManyToOne
     private Brand brand;
 
     public Long getId() {

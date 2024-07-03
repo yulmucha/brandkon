@@ -18,7 +18,7 @@
                 and product.brand_id = #{brandId}
             </if>
             <if test="categoryId != null">
-                and product.category_id = #{categoryId}
+                and brand.category_id = #{categoryId}
             </if>
         </where>
         <if test="sort == 'POPULAR'">
