@@ -7,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import practice.brandkon.brand.Brand;
-import practice.brandkon.category.Category;
 
 @Entity
 public class Product {
@@ -52,5 +51,9 @@ public class Product {
 
     public Integer getExpiryDays() {
         return expiryDays;
+    }
+
+    public void incrementSales() {
+        sales = sales + 1;
     }
 }

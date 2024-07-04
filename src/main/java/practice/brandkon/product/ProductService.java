@@ -1,6 +1,7 @@
 package practice.brandkon.product;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -35,5 +36,18 @@ public class ProductService {
                 product.getBrand().getName(),
                 product.getPrice(),
                 product.getExpiryDays());
+    }
+
+    @Transactional
+    public void incrementSales(Long id) {
+        Product product = productRepository.findById(id)
+                .orElse(null);
+
+
+        if (product == null) {
+            throw new IllegalArgumentException("판매량을 증가시킬 수 없는 상품 id: " + id);
+        }
+
+        product.incrementSales();
     }
 }
