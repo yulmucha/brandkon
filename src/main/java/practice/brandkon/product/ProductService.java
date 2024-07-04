@@ -40,7 +40,7 @@ public class ProductService {
 
     @Transactional
     public void incrementSales(Long id) {
-        Product product = productRepository.findById(id)
+        Product product = productRepository.findByIdForUpdate(id)
                 .orElse(null);
 
 
