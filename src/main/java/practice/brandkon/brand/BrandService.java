@@ -14,7 +14,7 @@ public class BrandService {
     }
 
     public List<BrandResponse> findAll(Long categoryId) {
-        return brandRepository.findAllByCategoryId(categoryId)
+        return brandRepository.findAllByCategoriesCategoryId(categoryId)
                 .stream()
                 .map(b -> new BrandResponse(
                         b.getId(),
