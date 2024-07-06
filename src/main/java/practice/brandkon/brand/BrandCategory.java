@@ -4,27 +4,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import practice.brandkon.category.Category;
 
 @Entity
-public class Brand {
+public class BrandCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @ManyToOne
+    private Brand brand;
 
-    private String imageUrl;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
+    @ManyToOne
+    private Category category;
 }
